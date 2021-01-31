@@ -1,0 +1,63 @@
+\documentclass[11pt]{article}
+\usepackage{fullpage}
+\usepackage{amsmath, amsfonts}
+\usepackage[utf8]{inputenc}
+
+
+\begin{document}
+\begin{center}
+{{\Large \sc Algorithms and Data Structures 02105+02326}}
+\end{center}
+\rule{\textwidth}{1pt}
+\begin{description}
+\item[Student name and id:] Roar Nind Steffensen (s144107)
+\item[Teaching assistant:] Martin Hemmingsen
+\item[Hand-in for week:] 1
+\end{description}
+\rule{\textwidth}{1pt}
+ 
+
+\section*{Exercise M.1}
+\textsc{ArrayFun} computes if 3 elements of a given array adds up to 0.
+
+\section*{Exercise M.2}
+The computation time for the worst case scenario is calculated as:
+
+\begin{gather*}
+\sum_{i=0}^{n}c_1 + \sum_{i=0}^{n-1}\left(\sum_{j=0}^{n}c_2\right) + \sum_{i=0}^{n-1}\left(\sum_{j=0}^{n-1}\left(\sum_{k=0}^{n}c_3\right)\right) + \sum_{i=0}^{n-1}\left(\sum_{j=0}^{n-1}\left(\sum_{k=0}^{n-1}c_4\right)\right) + c_5
+\end{gather*}
+
+Where $c_1$, $c_2$ and $c_3$ are the amount of time used in the first, second and third loops' comparisons. $c_4$ is the time used in the if-statement, and $c_5$ is the time used in the final return statement. \\
+
+The inner sum in each case of the loops has en additional check, which is the final check returning false (ending the loop). The expression can be reduced to:
+
+\begin{gather*}
+    (n+1)c_1 + n(n+1)c_2 + n(n+1)^2c_3 + n^3c_4 + c_5 
+\end{gather*}
+
+
+
+From this, it is clear that the algorithm follows $\Theta(n^3)$
+
+\section*{Exercise M.3}
+\subsection*{a)}
+This version of the algorithm computes if 3 \textit{different} elements of a given array adds up to 0.
+
+\subsection*{b)}
+The computation time for the worst case scenario is calculated as:
+
+\begin{gather*}
+\sum_{i=0}^{n}c_1 + \sum_{i=0}^{n-1}\left(\sum_{j=i+1}^{n}c_2\right) + \sum_{i=0}^{n-1}\left(\sum_{j=i+1}^{n-1}\left(\sum_{k=j+1}^{n}c_3\right)\right) + \sum_{i=0}^{n-1}\left(\sum_{j=i+1}^{n-1}\left(\sum_{k=j+1}^{n-1}c_4\right)\right) + c_5
+\end{gather*}
+
+The constants $c_1$ to $c_5$ represent the same quantities as in the previous exercise.  \\
+
+In this version of the algorithm, the nested loops depends on the iteration of the loop around it, reducing the amount of computations. The expression can be reduced (using wolfram alpha) to:
+
+\begin{gather*}
+(n+1)c_1 + \frac{n(n+1)}{2}c_2 + \frac{n(n^2-1)}{6}c_3 + \frac{n(n^2-3n+2)}{6}c_4 + c_5
+\end{gather*}
+
+Which clearly shows, that this algorithm also follows $\Theta(n^3)$
+
+\end{document}
